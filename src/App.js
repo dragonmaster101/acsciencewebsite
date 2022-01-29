@@ -1,24 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import {Post} from './components/post/post'
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="root">
+          <Post 
+            title="Quantum Pacman"
+            author="Omer Ali Malik"
+            date="29 February 2020"
+            url="https://www.youtube.com/watch?v=LMagNcngvcU&ab_channel=JavaScriptMastery"
+            description="This is a game that uses quantum circuits and qauntum game theory to simulate pacman in an entangled state instance. Winners and losers are just predicted"
+            card={false}
+          />
+      </div>
   );
 }
 

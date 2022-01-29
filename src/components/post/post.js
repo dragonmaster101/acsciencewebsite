@@ -95,7 +95,7 @@ export function Post(props){
             )
         }
         else {
-            PostCard(props);
+            return PostCard(props);
         }
 }
 

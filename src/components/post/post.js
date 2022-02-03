@@ -4,6 +4,7 @@ import "./post.css"
 import "./style.scss"
 import "styled-jsx"
 
+import extract from "./extract";
 
 function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
@@ -100,6 +101,16 @@ export function Post(props){
 }
 
 function PostCard(props){
+    let imgSrc = extract(props.url);
+    React.useEffect(() => {
+        // GET request using fetch inside useEffect React hook
+        fetch('https://api.npms.io/v2/search?q=react')
+            .then(response => response.json())
+            .then(data => alert(data.total));
+    
+    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+    }, []);
+
     return (
         <div>
         <style jsx>
@@ -184,7 +195,7 @@ function PostCard(props){
         </style>
         <div className="container">
             <div className="square">
-            <img src="https://images.unsplash.com/photo-1504610926078-a1611febcad3?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e1c8fe0c9197d66232511525bfd1cc82&auto=format&fit=crop&w=1100&q=80" className="mask" alt={props.Title + " image"}/>
+            <img src={imgSrc} className="mask" alt={props.Title + " image"}/>
             <div className="h1">{props.title}</div>
             
                 <p>{props.description}</p>

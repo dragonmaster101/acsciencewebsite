@@ -14,25 +14,6 @@ function getWindowDimensions() {
     };
 }
 
-export function CreatePost(props){
-    const [title , setTitle] = React.useState(false);
-    const [author , setAuthor] = React.useState(false);
-    const [url , setUrl] = React.useState(false);
-
-    const [data , setData] = React.useState(false);
-
-    return (
-        <div className="post-CreatePost-root">
-            <style jsx>
-                {`
-                
-                `}
-            </style>
-
-        </div>
-    )
-}
-
 export function Post(props){
         // let {width , height} = getWindowDimensions();
         const { innerWidth: width, innerHeight: height } = window;

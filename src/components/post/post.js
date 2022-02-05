@@ -96,12 +96,25 @@ function PostCard(props){
 
     return (
         <div>
-        <Card style={{ width: '18rem' }}>
+            <style type="text/css">
+                {`
+                .btn-flat {
+                background-color: #fe921f;
+                color: white;
+                }
+
+                .btn-xxl {
+                padding: 1rem 1.5rem;
+                font-size: 1.5rem;
+                }
+                `}
+            </style>
+        <Card style={{ width: '28rem' }}>
             <Card.Img variant="top" src={imgSrc}/>
             <Card.Body>
             <Card.Title>{props.title}</Card.Title>
             <Card.Text>{props.description}</Card.Text>
-            <Button variant="primary">Go somewhere</Button>
+            <Button variant="flat">Go somewhere</Button>
             </Card.Body>
         </Card>
         </div>

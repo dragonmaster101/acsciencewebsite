@@ -20,6 +20,7 @@ export function Post(props){
         // let {width , height} = getWindowDimensions();
         const { innerWidth: width, innerHeight: height } = window;
         let bh = height * 60/100;
+
         if (!props.card){
             return (
                 <div className="post-Post-root">
@@ -60,21 +61,21 @@ export function Post(props){
 
                         `}
                     </style>
-                    <h1>{props.title}</h1>
-                    <h2>{"By " + props.author}</h2>
-                    <div className="date">{props.date}</div>
+                    <h1>{props.data.title}</h1>
+                    <h2>{"By " + props.data.author}</h2>
+                    <div className="date">{props.data.date}</div>
                     
                     <div style={{height: bh}} className="player-wrapper">
                         <ReactPlayer
                             className="react-player"
-                            url={props.url}
+                            url={props.data.url}
                             width="80%"
                             height="100%"
                             controls={false}
                         />
                     </div>
                     <h1 className="dTitle">Description</h1>
-                    <p>{props.description}</p>
+                    <p>{props.data.description}</p>
                 </div>
             )
         }
@@ -84,15 +85,15 @@ export function Post(props){
 }
 
 function PostCard(props){
-    let imgSrc = extract(props.url);
-    React.useEffect(() => {
-        // GET request using fetch inside useEffect React hook
-        fetch('https://api.npms.io/v2/search?q=react')
-            .then(response => response.json())
-            .then(data => alert(data.total));
+    let imgSrc = extract(props.data.url);
+    // React.useEffect(() => {
+    //     // GET request using fetch inside useEffect React hook
+    //     fetch('https://api.npms.io/v2/search?q=react')
+    //         .then(response => response.json())
+    //         .then(data => alert(data.total));
     
-    // empty dependency array means this effect will only run once (like componentDidMount in classes)
-    }, []);
+    // // empty dependency array means this effect will only run once (like componentDidMount in classes)
+    // }, []);
 
     return (
         <div>
@@ -109,12 +110,12 @@ function PostCard(props){
                 }
                 `}
             </style>
-        <Card style={{ width: '28rem' }}>
+        <Card style={{ width: '24rem' }}>
             <Card.Img variant="top" src={imgSrc}/>
             <Card.Body>
-            <Card.Title>{props.title}</Card.Title>
-            <Card.Text>{props.description}</Card.Text>
-            <Button variant="flat">Go somewhere</Button>
+            <Card.Title>{props.data.title}</Card.Title>
+            <Card.Text>{props.data.description}</Card.Text>
+            <Button variant="flat">Read More</Button>
             </Card.Body>
         </Card>
         </div>

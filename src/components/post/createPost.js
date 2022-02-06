@@ -42,7 +42,8 @@ export default function CreatePost(props) {
                 
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Description</Form.Label>
-                    <Form.Control as="textarea" rows={3} maxLength={32}/>
+                    <Form.Control as="textarea" rows={3} maxLength={32 * 6} onChange={e => setDescription(e.target.value)}/>
+                    <Form.Label style={{fontSize: "medium"}}>Total Characters   {description.length} / {32 * 6}</Form.Label>
                 </Form.Group>
 
                 <Button variant="flat" className="createPost-btn">

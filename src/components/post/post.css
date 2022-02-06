@@ -47,6 +47,14 @@
     padding-bottom: 2%;
 }
 
+.posts-Search {
+    width: 40%;
+}
+
+.posts-SearchBar {
+    font-size: xx-large;
+    color: white;
+}
 
 .posts-Body {
     padding-top: 1%;

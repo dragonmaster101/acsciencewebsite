@@ -40,7 +40,7 @@ export default function Posts(props){
     let [searchForm , setSearchForm] = useState(false);
 
     useEffect(() => {
-        getPosts("http://localhost:8080" , setPostsData);
+        getPosts("https://science-web-api.herokuapp.com" , setPostsData);
     }, []);
 
     searchForm = (
@@ -66,7 +66,7 @@ export default function Posts(props){
                     setPostsData(<ReactLoading 
                         type={"spin"} color={"white"} height={'10%'} width={'10%'} />)
 
-                    fetch("http://localhost:8080/post/query/" + query , {
+                    fetch("https://science-web-api.herokuapp.com/post/query/" + query , {
                         method: 'GET',
                         headers: {
                             accept: 'application/json',

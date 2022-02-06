@@ -40,6 +40,8 @@ export default function Posts(props){
     let [searchForm , setSearchForm] = useState(false);
 
     useEffect(() => {
+        setPostsData(<ReactLoading 
+                        type={"spin"} color={"white"} height={'10%'} width={'10%'} />)
         getPosts("https://science-web-api.herokuapp.com" , setPostsData);
     }, []);
 

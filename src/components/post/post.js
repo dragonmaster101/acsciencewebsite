@@ -1,6 +1,11 @@
-import React from "react";
+import React  , {useCallback} from "react";
+import {useNavigate} from 'react-router-dom';
+
 import ReactPlayer from "react-player/youtube";
 import { Card , Button } from 'react-bootstrap'
+
+import {BiArrowBack} from "react-icons/bi"
+
 
 import "./post.css"
 import "./style.scss"
@@ -16,11 +21,36 @@ function getWindowDimensions() {
     };
 }
 
+function GetPostById(id , setter){
+    fetch("https://science-web-api.herokuapp.com/post/id/" + id , {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+        },
+    }).then(resp => {
+        resp.json().then(val => {
+            setter(<Post data={val}/>);
+        })
+    }).catch(err => alert(err))
+}
+
+export function PostById(props) {
+    const [postbyid , setPost] = React.useState(false);
+    React.useEffect(() => GetPostById(props.id, setPost) , [])
+
+    return (
+        <div>
+            {postbyid}
+        </div>
+    )
+}
+
 export function Post(props){
         // let {width , height} = getWindowDimensions();
         const { innerWidth: width, innerHeight: height } = window;
         let bh = height * 60/100;
 
+        const handleBackClick = useNavigate();
         if (!props.card){
             return (
                 <div className="post-Post-root">
@@ -61,6 +91,14 @@ export function Post(props){
 
                         `}
                     </style>
+                    <Button 
+                    style={{
+                        backgroundColor: "white" , color: "black" , borderStyle: "none" , 
+                        marginBottom: 20 , padding: 20
+                    }}
+                    onClick={() => handleBackClick('/')}
+                    >
+                        <BiArrowBack /></Button>
                     <h1>{props.data.title}</h1>
                     <h2>{"By " + props.data.author}</h2>
                     <div className="date">{props.data.date}</div>
@@ -95,6 +133,10 @@ function PostCard(props){
     // // empty dependency array means this effect will only run once (like componentDidMount in classes)
     // }, []);
 
+    const navigate = useNavigate();
+    const handleOnClick = useCallback(() => navigate('/post/id/' + props.data.id, {replace: true}), [navigate , props.data.id]);
+
+
     return (
         <div>
             <style type="text/css">
@@ -119,9 +161,10 @@ function PostCard(props){
             <Card.Img variant="top" src={imgSrc}/>
             <Card.Body>
             <Card.Title className="post-title">{props.data.title}</Card.Title>
+            <Card.Subtitle className="post-subtitle-author">{"By " + props.data.author}</Card.Subtitle>
             <Card.Subtitle className="post-subtitle">{props.data.date}</Card.Subtitle>
             <Card.Text className="post-description">{props.data.description}</Card.Text>
-            <Button variant="flat">Read More</Button>
+            <Button variant="flat" onClick={handleOnClick}>Read More</Button>
             </Card.Body>
         </Card>
         </div>

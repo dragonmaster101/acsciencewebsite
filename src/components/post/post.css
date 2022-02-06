@@ -22,6 +22,11 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+.post-subtitle-author {
+    font-family: 'Lato', sans-serif;
+    padding-bottom: 2%;
+}
+
 .post-subtitle {
     font-family: 'Lato', sans-serif;
     padding-bottom: 3.8%;
@@ -47,6 +52,14 @@
     padding-bottom: 2%;
 }
 
+.posts-Search {
+    width: 40%;
+}
+
+.posts-SearchBar {
+    font-size: xx-large;
+    color: white;
+}
 
 .posts-Body {
     padding-top: 1%;

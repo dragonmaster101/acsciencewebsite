@@ -1,3 +1,4 @@
+import ReactLoading from "react-loading";
 import {useState , useEffect} from "react"
 
 import { Post } from "./post"
@@ -35,21 +36,63 @@ function printPost(post) {
 
 export default function Posts(props){
     const [postsData , setPostsData] = useState(false);
+    const [query , setQuery] = useState(false);
+    let [searchForm , setSearchForm] = useState(false);
 
     useEffect(() => {
-        getPosts("http://localhost:8080" , setPostsData);
+        getPosts("https://science-web-api.herokuapp.com" , setPostsData);
     }, []);
+
+    searchForm = (
+        <FormControl
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                style={{padding: 10}}
+                placeholder="enter author/title and click the search button"
+                onChange={e => setQuery(e.target.value)}
+                />
+    );
 
     return (
         <div className="posts-Header">
             <h1 className="posts-Title">Projects</h1>
-            <InputGroup className="mb-3">
+            <InputGroup className="posts-Search" style={{width: "90%" , marginLeft: "4%" , marginBottom: "2%"}}>
                 <InputGroup.Text id="inputGroup-sizing-default"><BsSearch /></InputGroup.Text>
-                <FormControl
-                aria-label="Default"
-                aria-describedby="inputGroup-sizing-default"
-                />
-                <Button variant="flat">search</Button>
+                
+                {searchForm}
+
+
+                <Button variant="flat" onClick={() => {
+                    setPostsData(<ReactLoading 
+                        type={"spin"} color={"white"} height={'10%'} width={'10%'} />)
+
+                    fetch("https://science-web-api.herokuapp.com/post/query/" + query , {
+                        method: 'GET',
+                        headers: {
+                            accept: 'application/json',
+                        },
+                    }).then(resp => {
+                        console.log(resp)
+                        if (resp.status === 669) {
+                            setPostsData(<h1 style={{color: "white"}}>No Matching Results</h1>)
+                            return;
+                        }
+                        resp.json().then(val => {
+                            let results = []
+                            for (let i=0;i < val.length;i++) {
+                                results.push((
+                                    <Col mg="auto">
+                                        <Post data={val[i]} card={true}/>
+                                    </Col>
+                                ))
+                            }
+                            setPostsData(results);
+                        })
+                    }).catch(err => alert(err))
+
+                }}>search</Button>
+
+
             </InputGroup>
             <div className="posts-Body">
                 <Container fluid className="posts-Container">

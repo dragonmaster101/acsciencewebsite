@@ -100,8 +100,13 @@ function PostCard(props){
             <style type="text/css">
                 {`
                 .btn-flat {
-                background-color: #fe921f;
-                color: white;
+                    font-family: 'Quicksand', sans-serif;
+                    background-color: #fe921f;
+                    color: white;
+                }
+                .btn-flat:hover {
+                    background-color: #e2821b;
+                    color: white;
                 }
 
                 .btn-xxl {
@@ -110,11 +115,12 @@ function PostCard(props){
                 }
                 `}
             </style>
-        <Card style={{ width: '24rem' }}>
+        <Card className="post-Card">
             <Card.Img variant="top" src={imgSrc}/>
             <Card.Body>
-            <Card.Title>{props.data.title}</Card.Title>
-            <Card.Text>{props.data.description}</Card.Text>
+            <Card.Title className="post-title">{props.data.title}</Card.Title>
+            <Card.Subtitle className="post-subtitle">{props.data.date}</Card.Subtitle>
+            <Card.Text className="post-description">{props.data.description}</Card.Text>
             <Button variant="flat">Read More</Button>
             </Card.Body>
         </Card>

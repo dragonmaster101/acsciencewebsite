@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
 .post-Post-root {
     width: 100%;
     height: 100%;
@@ -6,6 +10,62 @@
     padding-left: 10%;
     padding-bottom: 10%;
 }
+
+.post-Card {
+    width: 24rem;
+    border-style: solid;
+    border-color: white;
+    margin-bottom: 4%;
+}
+
+.post-title {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.post-subtitle {
+    font-family: 'Lato', sans-serif;
+    padding-bottom: 3.8%;
+}
+
+.post-description {
+    font-family: 'Quicksand', sans-serif;
+}
+
+/* posts.js Section begins here */
+
+.posts-Header {
+    padding-top: 2%;
+    padding-bottom: 10%;
+    background-color: #FF6464;
+}
+
+.posts-Title {
+    color: white;
+    text-align: center;
+    font-size: 800%;
+    font-family: 'Sacramento', cursive;
+    padding-bottom: 2%;
+}
+
+
+.posts-Body {
+    padding-top: 1%;
+    padding-bottom: 1%;
+    background-color: #f84d4d;
+}
+.posts-Container {
+    margin : 4%;
+}
+
+
+/* createPost.js SECTION ----------------- */
+
+.createPost-root {
+    font-family: 'Montserrat', sans-serif;
+    font-size: x-large;
+    padding: 10%;
+}
+
 
 .player-wrapper {
     width: 100%; 
@@ -19,3 +79,7 @@ height: 50%;
 /* .react-player > div {
     position: absolute;
 } */
+
+.test {
+    color: #e2821b;
+}

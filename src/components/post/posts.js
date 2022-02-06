@@ -1,6 +1,11 @@
 import {useState , useEffect} from "react"
+
 import { Post } from "./post"
-import {Container , Row , Col } from "react-bootstrap"
+
+import {Container , Row , Col , InputGroup , FormControl , Button} from "react-bootstrap"
+import {BsSearch} from "react-icons/bs"
+
+import "./post.css"
 
 
 function getPosts(website , setter){
@@ -36,12 +41,23 @@ export default function Posts(props){
     }, []);
 
     return (
-        <div>
-            <Container fluid style={{margin: 20}}>
-                <Row>
-                    {postsData}
-                </Row>
-            </Container>
+        <div className="posts-Header">
+            <h1 className="posts-Title">Projects</h1>
+            <InputGroup className="mb-3">
+                <InputGroup.Text id="inputGroup-sizing-default"><BsSearch /></InputGroup.Text>
+                <FormControl
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                />
+                <Button variant="flat">search</Button>
+            </InputGroup>
+            <div className="posts-Body">
+                <Container fluid className="posts-Container">
+                    <Row>
+                        {postsData}
+                    </Row>
+                </Container>
+            </div>
         </div>
     )
 }
